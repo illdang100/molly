@@ -86,21 +86,21 @@ const Home = () => {
   //       vaccination: [
   //         {
   //           vaccinationName: "종합백신1차",
-  //           vaccinationDate: "2020-08-30",
+  //           vaccinationDate: "2023-06-01",
   //         },
   //       ],
   //       vaccinePredict: [
   //         {
   //           vaccinationName: "종합백신2차",
-  //           vaccinationDate: "2023-05-16",
+  //           vaccinationDate: "2023-06-22",
   //         },
   //         {
   //           vaccinationName: "종합백신2차",
-  //           vaccinationDate: "2023-05-16",
+  //           vaccinationDate: "2023-06-22",
   //         },
   //         {
   //           vaccinationName: "종합백신2차",
-  //           vaccinationDate: "2023-05-16",
+  //           vaccinationDate: "2023-06-22",
   //         },
   //       ],
   //     },

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../css/BoardList.module.css";
+import styles from "../../css/ManagerBoardList.module.css";
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
 import { IoMdThumbsUp } from "react-icons/io";
 import { FaComment } from "react-icons/fa";

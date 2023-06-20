@@ -34,7 +34,7 @@
 .month > span:nth-child(2) {
   font-weight: bold;
   font-size: 25px;
-  color: #E36F03;
+  color: #e36f03;
 }
 
 .week > td {
@@ -60,7 +60,7 @@
 }
 
 .today {
-  background-color: #F4E1D4;
+  background-color: #f4e1d4;
   width: 22px;
   height: 22px;
   border-radius: 100%;
@@ -101,7 +101,7 @@
   top: 10px;
   left: -14px;
   content: "";
-  border: 0.6em solid transparent; 
+  border: 0.6em solid transparent;
   border-right: 0.8em solid #939393d4;
 }
 
@@ -114,8 +114,6 @@
 }
 
 .plus {
-  position: absolute;
-  right: 5px;
   background-color: #bababad4;
   color: white;
   width: 15px;

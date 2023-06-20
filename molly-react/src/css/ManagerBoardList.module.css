@@ -1,0 +1,182 @@
+.header {
+  background-color: #f9f9f9;
+  position: relative;
+  display: flex;
+  padding: 10px 0;
+}
+
+.header > ul {
+  padding: 25px;
+}
+
+.board {
+  margin-top: -16px;
+  background-color: #f9f9f9;
+}
+
+.list,
+.listManager {
+  z-index: 1;
+  padding: 8px 0 20px;
+  padding-left: 55px;
+  padding-right: 50px;
+  border-bottom: 1px solid #e6e6e6;
+  color: #645c56;
+  font-size: small;
+  position: relative;
+  height: 75px;
+}
+
+.list > p,
+.list > div > p,
+.list > span,
+.listManager > p,
+.listManager > div > p,
+.listManager > span {
+  color: #a19c97;
+}
+
+.list > div,
+.listManager > div {
+  overflow: hidden;
+}
+
+.listManager > h3 {
+  margin-left: 47px;
+  font-size: 16px;
+}
+
+.list > h3 {
+  font-size: 16px;
+}
+
+.listManager > span:nth-child(1) {
+  position: absolute;
+  left: 54px;
+  top: 23px;
+  background-color: tomato;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+}
+
+.list > span:nth-child(2),
+.listManager > span:nth-child(3) {
+  padding-right: 15px;
+}
+
+.list > div:nth-child(4),
+.listManager > div:nth-child(5) {
+  position: absolute;
+  right: 50px;
+  bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.list > div > span:nth-child(1),
+.listManager > div > span:nth-child(1) {
+  color: #b27910;
+  margin-right: 5px;
+}
+
+.list > div > span:nth-child(2),
+.listManager > div > span:nth-child(2) {
+  color: #b27910;
+  margin-right: 15px;
+}
+
+.list > div > span:nth-child(3),
+.listManager > div > span:nth-child(3) {
+  color: #b27910;
+  margin-right: 5px;
+}
+
+.list > div > span:nth-child(4),
+.listManager > div > span:nth-child(4) {
+  color: #b27910;
+}
+
+.footer {
+  position: relative;
+  height: 80px;
+  background-color: #f9f9f9;
+  margin: auto;
+  border-radius: 0 0 20px 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.sort {
+  z-index: 2;
+  color: #a19c97;
+  background-color: #eeecec;
+  width: 108px;
+  position: absolute;
+  top: 26px;
+  right: 40px;
+}
+
+.default {
+  position: relative;
+  left: 10px;
+  bottom: 6px;
+  padding-right: 10px;
+  font-size: small;
+}
+
+.dropdown > li {
+  font-size: 13.5px;
+  list-style: none;
+  padding: 5px 10px;
+  border-top: 1px solid #cfcfcf;
+}
+
+.dropdown > li:hover {
+  background-color: #e3dede;
+}
+
+.footer > div > button {
+  border: none;
+  color: #d4cbbb;
+  padding: 0 10px;
+  font-size: 15px;
+  background-color: #f9f9f9;
+}
+
+.footer > div > button:hover {
+  cursor: pointer;
+}
+
+.footer > div > button[aria-current] {
+  font-weight: bold;
+  color: #b27910;
+  cursor: pointer;
+}
+
+.petTap {
+  margin-left: 60px;
+  margin-top: 25px;
+}
+
+.petTap > span {
+  font-size: 16px;
+  color: #918a84;
+  font-weight: 600;
+  margin-right: 20px;
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.petTap > span:not(:last-of-type) {
+  border-right: 1px solid #e6ddd7;
+}
+
+.writeBtn {
+  position: absolute;
+  right: 55px;
+}

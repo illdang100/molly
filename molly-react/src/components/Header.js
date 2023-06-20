@@ -31,6 +31,7 @@ const Header = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [alarmLoading, setAlarmLoading] = useState(false);
   const [iconView, setIconView] = useState(true);
   const [pet, setPet] = useState(null);
   const [alarm, setAlarm] = useState(null);
@@ -264,7 +265,7 @@ const Header = () => {
   };
 
   const handleAlarmClick = () => {
-    setLoading(true);
+    setAlarmLoading(true);
 
     if (
       localStorage.getItem("accessToken") !== null ||
@@ -282,7 +283,7 @@ const Header = () => {
           setIconView(true);
           console.log(response);
           setAlarm(response.data.data.pet);
-          setLoading(false);
+          setAlarmLoading(false);
         })
         .catch((e) => {
           console.log(e);
@@ -379,7 +380,7 @@ const Header = () => {
                     </span>
                     {alarmView && (
                       <div className={styles.alarm}>
-                        <AlarmDropdown alarm={alarm} loading={loading} />
+                        <AlarmDropdown alarm={alarm} loading={alarmLoading} />
                       </div>
                     )}
                   </div>
@@ -592,41 +593,57 @@ const AlarmDropdown = (props) => {
 
   return (
     <div className={styles.alarmdropdown}>
-      {props.alarm.map((item, index) => {
-        return item.vaccinePredict.map((vaccine) => {
-          const dday = new Date(`${vaccine.vaccinationDate} 00:00:00`);
-          const gapNum = dday - today;
-          const day = Math.ceil(Math.ceil(gapNum / (1000 * 60 * 60 * 24)));
-          if (Math.abs(day) === 0) {
-            count++;
-            return (
-              <li>
-                <p>💉접종알림</p>
-                <p>
-                  {item.petName}의 {vaccine.vaccinationName}가 오늘 예정입니다.
-                </p>
-              </li>
-            );
-          } else if (day >= 0 && day <= 7) {
-            count++;
-            return (
-              <li>
-                <p>💉접종알림</p>
-                <p>
-                  {item.petName}의 {vaccine.vaccinationName}가 {Math.abs(day)}일
-                  남았습니다.
-                </p>
-              </li>
-            );
-          } else if (count === 0 && index === props.alarm.length - 1)
-            return (
-              <li>
-                <p>💉접종알림</p>
-                <p>알림이 없습니다.</p>
-              </li>
-            );
-        });
-      })}
+      {props.alarm === null ? (
+        <li>
+          <p>💉접종알림</p>
+          <p>알림이 없습니다.</p>
+        </li>
+      ) : props.alarm.length === 0 ? (
+        <li>
+          <p>💉접종알림</p>
+          <p>알림이 없습니다.</p>
+        </li>
+      ) : (
+        props.alarm.map((item) => {
+          return item.vaccinePredict.map((vaccine, index) => {
+            const dday = new Date(`${vaccine.vaccinationDate} 00:00:00`);
+            const gapNum = dday - today;
+            const day = Math.ceil(Math.ceil(gapNum / (1000 * 60 * 60 * 24)));
+            if (Math.abs(day) === 0) {
+              count++;
+              return (
+                <li>
+                  <p>💉접종알림</p>
+                  <p>
+                    {item.petName}의 {vaccine.vaccinationName}가 오늘
+                    예정입니다.
+                  </p>
+                </li>
+              );
+            } else if (day >= 0 && day <= 7) {
+              count++;
+              return (
+                <li>
+                  <p>💉접종알림</p>
+                  <p>
+                    {item.petName}의 {vaccine.vaccinationName}가 {Math.abs(day)}
+                    일 남았습니다.
+                  </p>
+                </li>
+              );
+            }
+          });
+        })
+      )}
+      {count === 0 &&
+        props.alarm !== null &&
+        props.alarm.length !==
+          0(
+            <li>
+              <p>💉접종알림</p>
+              <p>알림이 없습니다.</p>
+            </li>
+          )}
     </div>
   );
 };

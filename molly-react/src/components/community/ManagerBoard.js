@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../css/Board.module.css";
+import styles from "../../css/ManagerBoard.module.css";
 import { Button } from "../Button";
 import { MdSearch } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";

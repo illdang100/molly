@@ -37,6 +37,7 @@ const Accuse = (props) => {
 
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8080",
+    withCredentials: true,
   });
 
   axiosInstance.interceptors.response.use(
@@ -110,7 +111,6 @@ const Accuse = (props) => {
   const handleAccuse = () => {
     const config = {
       headers: {
-        Authorization: localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     };

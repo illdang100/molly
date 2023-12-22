@@ -28,19 +28,13 @@ const DetailPet = () => {
   useEffect(() => {
     setLoading(true);
 
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
-
     axiosInstance
-      .get(`/api/auth/pet/${id}`, config)
+      .get(`/api/auth/pet/${id}`)
       .then((response) => {
         setText(response.data.data);
         if (response.data.data.petType === "DOG") {
           axiosInstance
-            .get(`/api/auth/pet/dog-species`, config)
+            .get(`/api/auth/pet/dog-species`)
             .then((response) => {
               setPetKind(response.data.data);
             })
@@ -49,7 +43,7 @@ const DetailPet = () => {
             });
         } else if (response.data.data.petType === "CAT") {
           axiosInstance
-            .get(`/api/auth/pet/cat-species`, config)
+            .get(`/api/auth/pet/cat-species`)
             .then((response) => {
               setPetKind(response.data.data);
             })
@@ -58,7 +52,7 @@ const DetailPet = () => {
             });
         } else if (response.data.data.petType === "RABBIT") {
           axiosInstance
-            .get(`/api/auth/pet/rabbit-species`, config)
+            .get(`/api/auth/pet/rabbit-species`)
             .then((response) => {
               setPetKind(response.data.data);
             })
@@ -149,6 +143,7 @@ const DetailPet = () => {
 
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8080",
+    withCredentials: true,
   });
 
   axiosInstance.interceptors.response.use(
@@ -237,14 +232,8 @@ const DetailPet = () => {
   };
 
   const deletePet = () => {
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
-
     axiosInstance
-      .delete(`/api/auth/pet/${id}`, config)
+      .delete(`/api/auth/pet/${id}`)
       .then((response) => {
         console.log(response);
         console.log("삭제 완료");

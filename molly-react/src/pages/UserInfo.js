@@ -28,14 +28,8 @@ const UserInfo = () => {
   useEffect(() => {
     setLoading(true);
 
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
-
     axiosInstance
-      .get(`/api/auth/account`, config)
+      .get(`/api/auth/account`)
       .then((response) => {
         setUser(response.data.data);
         setLoading(false);
@@ -65,6 +59,7 @@ const UserInfo = () => {
 
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8080",
+    withCredentials: true,
   });
 
   axiosInstance.interceptors.response.use(
@@ -158,17 +153,10 @@ const UserInfo = () => {
       formData.append("accountProfileImage", imgRef.current.files[0]);
     }
 
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
-
     const fetchData = async function fetch() {
       const response = await axiosInstance.patch(
         `/api/auth/account/profile-image`,
-        formData,
-        config
+        formData
       );
       if (response.data.code === 1) {
         console.log("사용자 이미지 수정 완료");
@@ -196,7 +184,6 @@ const UserInfo = () => {
 
     const config = {
       headers: {
-        Authorization: localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     };
@@ -234,17 +221,11 @@ const UserInfo = () => {
 
   // 기본 이미지 변경 delete
   const deleteImg = () => {
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
     setImgFile(null);
 
     const fetchData = async function fetch() {
       const response = await axiosInstance.delete(
-        `/api/auth/account/profile-image`,
-        config
+        `/api/auth/account/profile-image`
       );
       if (response.data.code === 1) {
         console.log("기본 이미지 변경 완료");
@@ -269,7 +250,6 @@ const UserInfo = () => {
   const handleNicknameSave = () => {
     const config = {
       headers: {
-        Authorization: localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     };
@@ -298,14 +278,8 @@ const UserInfo = () => {
   };
 
   const handleLeave = () => {
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
-
     axiosInstance
-      .delete(`/api/auth/account`, config)
+      .delete(`/api/auth/account`)
       .then((response) => {
         console.log(response);
         console.log("탈퇴 완료");

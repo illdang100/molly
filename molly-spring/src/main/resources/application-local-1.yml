@@ -1,0 +1,43 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: utf-8
+      force: true
+
+spring:
+  profiles: local-1
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+  redis:
+    host: 0.0.0.0
+    port: 6379
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/molly?serverTimezone=Asia/Seoul
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${database.username}
+    password: ${database.password}
+
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+    properties:
+      '[hibernate.default_batch_fetch_size]': 100
+      '[hibernate.format_sql]': true
+    show-sql: true
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    '[kr.co.kumoh.illdang100.mollyspring]': DEBUG

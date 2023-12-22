@@ -37,3 +37,5 @@ out/
 .vscode/
 
 application-BUNDLE-KEY.yml
+application-database.yml
+application-social-login.yml

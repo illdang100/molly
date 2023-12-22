@@ -37,6 +37,7 @@ const AddVaccine = (props) => {
 
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8080",
+    withCredentials: true,
   });
 
   axiosInstance.interceptors.response.use(
@@ -94,7 +95,7 @@ const AddVaccine = (props) => {
             throw new Error("There is no refresh token");
           }
         } else if (errResponseStatus === 400) {
-          console.log(error.response.data);
+          alert(error.response.data.msg);
         } else if (errResponseStatus === 401) {
           console.log("인증 실패");
           window.location.replace("/login");
@@ -110,7 +111,6 @@ const AddVaccine = (props) => {
   const handleAddVaccine = () => {
     const config = {
       headers: {
-        Authorization: localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     };

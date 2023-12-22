@@ -73,6 +73,7 @@ const BoardDetail = () => {
 
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8080",
+    withCredentials: true,
   });
 
   axiosInstance.interceptors.response.use(
@@ -151,7 +152,7 @@ const BoardDetail = () => {
   //     category: "MEDICAL",
   //     petType: "CAT",
   //     content:
-  //       "<p>제 강아지 예쁘죠?</p><figure><img src='/img/test.png'></img></figure><figure><img src='/img/CAT-logo.png'></figure>",
+  //       "<p>제 강아지 예쁘죠?</p><figure><img src='/img/test.png'></img></figure>",
   //     writerNick: null,
   //     writerEmail: "writer@naver.com",
   //     createdAt: "2023-03-01 11:00:34",
@@ -236,14 +237,8 @@ const BoardDetail = () => {
   };
 
   const deleteBoard = () => {
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
-
     axiosInstance
-      .delete(`/api/auth/board/${id}`, config)
+      .delete(`/api/auth/board/${id}`)
       .then((response) => {
         console.log(response);
         console.log("삭제 완료");
@@ -257,7 +252,6 @@ const BoardDetail = () => {
   const handleLike = () => {
     const config = {
       headers: {
-        Authorization: localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     };
@@ -287,7 +281,6 @@ const BoardDetail = () => {
   const handleComment = () => {
     const config = {
       headers: {
-        Authorization: localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     };
@@ -347,14 +340,8 @@ const BoardDetail = () => {
   };
 
   const handleCommentDelete = (commentId) => {
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
-
     axiosInstance
-      .delete(`/api/auth/board/${id}/comment/${commentId}`, config)
+      .delete(`/api/auth/board/${id}/comment/${commentId}`)
       .then((response) => {
         console.log(response);
         window.location.reload();

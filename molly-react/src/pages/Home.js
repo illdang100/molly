@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import SignUp from "./SignUp";
 import axios from "axios";
 import { SyncLoader } from "react-spinners";
+import useDidMountEffect from "../pages/useDidMountEffect";
 
 let CustomBody = styled.div`
   margin: 140px 5% 0;
@@ -34,17 +35,11 @@ const Home = () => {
   const [save, setSave] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useDidMountEffect(() => {
     setLoading(true);
 
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
-
     axiosInstance
-      .get(`/api/auth/home`, config)
+      .get(`/api/auth/home`)
       .then((response) => {
         console.log(response);
         setPet(response.data.data.pet);
@@ -122,6 +117,7 @@ const Home = () => {
 
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8080",
+    withCredentials: true,
   });
 
   axiosInstance.interceptors.response.use(

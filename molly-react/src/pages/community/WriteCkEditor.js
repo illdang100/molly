@@ -65,7 +65,6 @@ const WriteCkEditor = () => {
     console.log("ckeditor render");
     const config = {
       headers: {
-        Authorization: localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     };
@@ -88,6 +87,7 @@ const WriteCkEditor = () => {
 
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8080",
+    withCredentials: true,
   });
 
   axiosInstance.interceptors.response.use(
@@ -161,11 +161,6 @@ const WriteCkEditor = () => {
   );
 
   const customUploadAdapter = (loader) => {
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
     let imgId = JSON.parse(localStorage.getItem("imgId"));
 
     return {
@@ -176,7 +171,7 @@ const WriteCkEditor = () => {
             formData.append("boardImage", file);
 
             axiosInstance
-              .post(`/api/auth/board/image`, formData, config)
+              .post(`/api/auth/board/image`, formData)
               .then((res) => {
                 console.log(res);
                 imgId !== null
@@ -215,7 +210,6 @@ const WriteCkEditor = () => {
 
     const config = {
       headers: {
-        Authorization: localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     };
@@ -247,7 +241,6 @@ const WriteCkEditor = () => {
 
     const config = {
       headers: {
-        Authorization: localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     };

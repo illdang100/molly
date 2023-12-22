@@ -4,6 +4,7 @@ import styles from "../css/First.module.css";
 import styled from "styled-components";
 import { SlArrowDown } from "react-icons/sl";
 import axios from "axios";
+import cookie from "react-cookies";
 
 let CustomNavLink = styled(NavLink)`
   color: #afa79f;
@@ -21,16 +22,20 @@ let CustomNavLink = styled(NavLink)`
 const First = () => {
   const [login, setLogin] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
   const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
-    const accessToken = params.get("accessToken");
-    const refreshToken = params.get("refreshToken");
-    const accountId = params.get("accountId");
+    const accessToken = cookie.load("accessToken");
+    const refreshToken = cookie.load("refreshToken");
+    const accountId = cookie.load("accountId");
 
-    if (accessToken !== null && refreshToken !== null && accountId !== null) {
+    if (
+      accessToken !== null &&
+      refreshToken !== null &&
+      accountId !== null &&
+      accessToken !== undefined &&
+      refreshToken !== undefined
+    ) {
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
       localStorage.setItem("accountId", accountId);

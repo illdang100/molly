@@ -18,6 +18,7 @@ const SurgeryHistory = (props) => {
 
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8080",
+    withCredentials: true,
   });
 
   axiosInstance.interceptors.response.use(
@@ -91,7 +92,6 @@ const SurgeryHistory = (props) => {
   const UpdateSurgery = (surgeryId) => {
     const config = {
       headers: {
-        Authorization: localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     };
@@ -119,9 +119,6 @@ const SurgeryHistory = (props) => {
 
   const DeleteSurgery = (surgeryId) => {
     const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
       data: {
         petId: props.petId,
         surgeryId: surgeryId,

@@ -48,7 +48,7 @@ public class Board extends BaseTimeEntity {
     @Column(nullable = false)
     private long likyCnt;
 
-    @Column(nullable = false)
+    @Column(name = "commentCnt", nullable = false)
     private long commentCnt;
 
     @Column(nullable = false)

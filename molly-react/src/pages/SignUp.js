@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "../css/SignUp.module.css";
 import { Button } from "../components/Button";
-import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const SignUp = () => {
@@ -26,22 +25,19 @@ const SignUp = () => {
   const [effectiveColor, setEffectiveColor] = useState("");
 
   const imgRef = useRef();
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
   let color = disabled ? "#D6CCC3" : "#B27910";
 
-  useEffect(() => {
-    const accessToken = params.get("accessToken");
-    const refreshToken = params.get("refreshToken");
-    const accountId = params.get("accountId");
+  // const accessToken = cookie.load("accessToken");
+  // const refreshToken = cookie.load("refreshToken");
+  // const accountId = cookie.load("accountId");
 
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
-    localStorage.setItem("accountId", accountId);
-  }, []);
+  // localStorage.setItem("accessToken", accessToken);
+  // localStorage.setItem("refreshToken", refreshToken);
+  // localStorage.setItem("accountId", accountId);
 
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8080",
+    withCredentials: true,
   });
 
   axiosInstance.interceptors.response.use(
@@ -105,7 +101,7 @@ const SignUp = () => {
           }
         } else if (errResponseStatus === 401) {
           console.log("인증 실패");
-          window.location.replace("/login");
+          //window.location.replace("/login");
         } else if (errResponseStatus === 403) {
           alert("권한이 없습니다.");
         }
@@ -123,17 +119,10 @@ const SignUp = () => {
       formData.append("accountProfileImage", imgRef.current.files[0]);
     }
 
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
-
     const fetchData = async function fetch() {
       const response = await axiosInstance.post(
         `/api/auth/account/save`,
-        formData,
-        config
+        formData
       );
       console.log(response);
       if (response.data.code === 1) {
@@ -152,7 +141,6 @@ const SignUp = () => {
 
     const config = {
       headers: {
-        Authorization: localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     };

@@ -43,14 +43,8 @@ const Surgery = (props) => {
   useEffect(() => {
     setLoading(true);
 
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
-
     axiosInstance
-      .get(`/api/auth/pet/surgery/${props.petId}`, config)
+      .get(`/api/auth/pet/surgery/${props.petId}`)
       .then((response) => {
         console.log(response);
         setSurgeryHistory(response.data.data);
@@ -70,6 +64,7 @@ const Surgery = (props) => {
 
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8080",
+    withCredentials: true,
   });
 
   axiosInstance.interceptors.response.use(
@@ -155,9 +150,6 @@ const Surgery = (props) => {
 
     for (let i = 0; i < surgeryHistory.length; i++) {
       const config = {
-        headers: {
-          Authorization: localStorage.getItem("accessToken"),
-        },
         data: {
           petId: props.petId,
           surgeryId: surgeryHistory[i].surgeryId,
@@ -179,7 +171,6 @@ const Surgery = (props) => {
   const registerSurgery = () => {
     const config = {
       headers: {
-        Authorization: localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     };

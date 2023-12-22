@@ -31,14 +31,8 @@ const Medicine = (props) => {
   useEffect(() => {
     setLoading(true);
 
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
-
     axiosInstance
-      .get(`/api/auth/pet/medication/${props.petId}`, config)
+      .get(`/api/auth/pet/medication/${props.petId}`)
       .then((response) => {
         console.log(response);
         setMedicine(response.data.data);
@@ -59,6 +53,7 @@ const Medicine = (props) => {
 
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8080",
+    withCredentials: true,
   });
 
   axiosInstance.interceptors.response.use(
@@ -133,7 +128,6 @@ const Medicine = (props) => {
     console.log("register");
     const config = {
       headers: {
-        Authorization: localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     };

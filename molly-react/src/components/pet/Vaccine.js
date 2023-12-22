@@ -32,14 +32,8 @@ const Vaccine = (props) => {
   useEffect(() => {
     setLoading(true);
 
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
-
     axiosInstance
-      .get(`/api/auth/pet/vaccination/${props.petId}`, config)
+      .get(`/api/auth/pet/vaccination/${props.petId}`)
       .then((response) => {
         console.log(response);
         setVaccineHistory(response.data.data);
@@ -64,6 +58,7 @@ const Vaccine = (props) => {
 
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8080",
+    withCredentials: true,
   });
 
   axiosInstance.interceptors.response.use(
@@ -137,7 +132,6 @@ const Vaccine = (props) => {
   const registerVaccine = () => {
     const config = {
       headers: {
-        Authorization: localStorage.getItem("accessToken"),
         "Content-Type": "application/json",
       },
     };

@@ -76,6 +76,7 @@ const Header = () => {
 
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8080",
+    withCredentials: true,
   });
 
   axiosInstance.interceptors.response.use(
@@ -238,28 +239,17 @@ const Header = () => {
   const handlePetClick = () => {
     setLoading(true);
 
-    if (
-      localStorage.getItem("accessToken") !== null ||
-      localStorage.getItem("accessToken") !== ""
-    ) {
-      const config = {
-        headers: {
-          Authorization: localStorage.getItem("accessToken"),
-        },
-      };
-
-      axiosInstance
-        .get(`/api/auth/home`, config)
-        .then((response) => {
-          setIconView(true);
-          console.log(response);
-          setPet(response.data.data.pet);
-          setLoading(false);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    }
+    axiosInstance
+      .get(`/api/auth/home`)
+      .then((response) => {
+        setIconView(true);
+        console.log(response);
+        setPet(response.data.data.pet);
+        setLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
 
     setPetView(!petView);
   };
@@ -267,29 +257,62 @@ const Header = () => {
   const handleAlarmClick = () => {
     setAlarmLoading(true);
 
-    if (
-      localStorage.getItem("accessToken") !== null ||
-      localStorage.getItem("accessToken") !== ""
-    ) {
-      const config = {
-        headers: {
-          Authorization: localStorage.getItem("accessToken"),
-        },
-      };
+    //   setAlarm([
+    //     {
+    //       petId: 13,
+    //       petName: "몰리",
+    //       petType: "DOG",
+    //       birthdate: "2013-08-07",
+    //       vaccination: [
+    //         {
+    //           vaccinationName: "종합백신1차",
+    //           vaccinationDate: "2023-03-14",
+    //         },
+    //       ],
+    //       vaccinePredict: [
+    //         {
+    //           vaccinationName: "종합백신2차",
+    //           vaccinationDate: "2023-05-13",
+    //         },
+    //         {
+    //           vaccinationName: "종합백신3차",
+    //           vaccinationDate: "2023-05-30",
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       petId: 14,
+    //       petName: "보리",
+    //       petType: "CAT",
+    //       birthdate: "2019-01-10",
+    //       vaccination: [
+    //         {
+    //           vaccinationName: "종합백신1차",
+    //           vaccinationDate: "2020-08-30",
+    //         },
+    //       ],
+    //       vaccinePredict: [
+    //         {
+    //           vaccinationName: "종합백신2차",
+    //           vaccinationDate: "2023-09-30",
+    //         },
+    //       ],
+    //     },
+    //   ]);
 
-      axiosInstance
-        .get(`/api/auth/home`, config)
-        .then((response) => {
-          setIconView(true);
-          console.log(response);
-          setAlarm(response.data.data.pet);
-          setAlarmLoading(false);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    }
+    axiosInstance
+      .get(`/api/auth/home`)
+      .then((response) => {
+        setIconView(true);
+        console.log(response);
+        setAlarm(response.data.data.pet);
+        setAlarmLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
 
+    setAlarmLoading(false);
     setAlarmView(!alarmView);
   };
 
@@ -492,11 +515,7 @@ const UserDropdown = (props) => {
       <li
         onClick={() => {
           axios
-            .delete(`http://localhost:8080/api/account/logout`, {
-              headers: {
-                "Refresh-Token": localStorage.getItem("refreshToken"),
-              },
-            })
+            .delete(`http://localhost:8080/api/account/logout`)
             .then((response) => {
               console.log(response);
               localStorage.clear();

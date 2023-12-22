@@ -51,14 +51,8 @@ const RegisterPet = () => {
   useEffect(() => {
     setLoading(true);
 
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
-
     axiosInstance
-      .get(`/api/auth/pet/dog-species`, config)
+      .get(`/api/auth/pet/dog-species`)
       .then((response) => {
         console.log(response);
         setPetKind(response.data.data);
@@ -72,15 +66,10 @@ const RegisterPet = () => {
 
   useEffect(() => {
     setLoading(true);
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
 
     if (petType === "DOG") {
       axiosInstance
-        .get(`/api/auth/pet/dog-species`, config)
+        .get(`/api/auth/pet/dog-species`)
         .then((response) => {
           console.log(response);
           setPetValue(response.data.data[0]);
@@ -92,7 +81,7 @@ const RegisterPet = () => {
         });
     } else if (petType === "CAT") {
       axiosInstance
-        .get(`/api/auth/pet/cat-species`, config)
+        .get(`/api/auth/pet/cat-species`)
         .then((response) => {
           console.log(response);
           setPetValue(response.data.data[0]);
@@ -104,7 +93,7 @@ const RegisterPet = () => {
         });
     } else {
       axiosInstance
-        .get(`/api/auth/pet/rabbit-species`, config)
+        .get(`/api/auth/pet/rabbit-species`)
         .then((response) => {
           console.log(response);
           setPetValue(response.data.data[0]);
@@ -222,6 +211,7 @@ const RegisterPet = () => {
 
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8080",
+    withCredentials: true,
   });
 
   axiosInstance.interceptors.response.use(
@@ -374,18 +364,8 @@ const RegisterPet = () => {
       );
     }
 
-    const config = {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    };
-
     const fetchData = async function fetch() {
-      const response = await axiosInstance.post(
-        `/api/auth/pet`,
-        formData,
-        config
-      );
+      const response = await axiosInstance.post(`/api/auth/pet`, formData);
       console.log(response);
       if (response.data.code === 1) {
         const petId = response.data.data.petId;

@@ -2,6 +2,7 @@ package kr.co.kumoh.illdang100.mollyspring.security.oauth;
 
 import kr.co.kumoh.illdang100.mollyspring.security.auth.PrincipalDetails;
 import kr.co.kumoh.illdang100.mollyspring.security.jwt.JwtProcess;
+import kr.co.kumoh.illdang100.mollyspring.security.jwt.JwtVO;
 import kr.co.kumoh.illdang100.mollyspring.security.jwt.RefreshToken;
 import kr.co.kumoh.illdang100.mollyspring.security.jwt.RefreshTokenRedisRepository;
 import kr.co.kumoh.illdang100.mollyspring.domain.account.Account;
@@ -45,9 +46,9 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
         log.debug("accessToken={}", accessToken);
 
-        addCookie(response, "accessToken", accessToken);
-        addCookie(response, "refreshToken", refreshToken);
-        addCookie(response, "accountId", account.getId());
+        addCookie(response, JwtVO.ACCESS_TOKEN_HEADER, accessToken);
+        addCookie(response, JwtVO.REFRESH_TOKEN_HEADER, refreshToken);
+        addCookie(response, JwtVO.PK_HEADER, account.getId());
 
         getRedirectStrategy().sendRedirect(request, response, REDIRECT_URL);
     }

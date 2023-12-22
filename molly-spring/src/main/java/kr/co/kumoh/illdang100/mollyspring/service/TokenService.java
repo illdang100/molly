@@ -55,6 +55,8 @@ public class TokenService {
         response.addHeader("AccountId", accountId);
         response.addHeader(JwtVO.ACCESS_TOKEN_HEADER, reAccessToken);
         response.addHeader(JwtVO.REFRESH_TOKEN_HEADER, reRefreshToken);
+
+        log.debug("reIssue token");
     }
 
     private void validateAccountNotSuspended(String accountId) {
@@ -78,6 +80,7 @@ public class TokenService {
         return refreshTokenRedisRepository
                 .findByRefreshToken(refreshToken)
                 .orElseThrow(() -> new CustomApiException("토큰 갱신에 실패했습니다"));
+
     }
 
     private static String extractToken(String refreshToken) {

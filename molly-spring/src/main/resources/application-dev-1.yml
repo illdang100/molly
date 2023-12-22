@@ -1,0 +1,28 @@
+server:
+  port: 5000
+  servlet:
+    encoding:
+      charset: utf-8
+      force: true
+
+spring:
+  profiles: dev-1
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      '[hibernate.default_batch_fetch_size]': 100
+
+  redis:
+    host: 52.79.162.235
+    port: 6379
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+logging:
+  level:
+    '[kr.co.kumoh.illdang100.mollyspring]': INFO

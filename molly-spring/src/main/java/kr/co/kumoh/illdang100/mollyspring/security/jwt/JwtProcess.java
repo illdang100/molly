@@ -3,9 +3,9 @@ package kr.co.kumoh.illdang100.mollyspring.security.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import kr.co.kumoh.illdang100.mollyspring.domain.account.AccountEnum;
 import kr.co.kumoh.illdang100.mollyspring.security.auth.PrincipalDetails;
 import kr.co.kumoh.illdang100.mollyspring.domain.account.Account;
-import kr.co.kumoh.illdang100.mollyspring.domain.account.AccountEnum;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

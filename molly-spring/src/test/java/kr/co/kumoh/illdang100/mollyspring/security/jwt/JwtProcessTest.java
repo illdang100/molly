@@ -31,7 +31,7 @@ class JwtProcessTest extends DummyObject {
         // given
 
         // when
-        String jwtToken1 = createAccessToken(1L, "google_1234", "일당백", AccountEnum.CUSTOMER);
+            String jwtToken1 = createAccessToken(1L, "google_1234", "일당백", AccountEnum.CUSTOMER);
         String jwtToken2 = createAccessToken(2L, "kakao_1234", "몰리", AccountEnum.ADMIN);
         System.out.println("jwtToken1 = " + jwtToken1);
         System.out.println("jwtToken2 = " + jwtToken2);

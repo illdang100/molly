@@ -77,7 +77,7 @@ jobs: # 병렬로 실행되는 작업 단위, 여러 step으로 이루어짐
       # (8) Copy Jar To Delpoy DIR
       - name: Copy jar and yml To Delpoy DIR
         run: |
-          cp ./build/libs/molly-spring-0.0.1-SNAPSHOT.jar ./dev-molly-deploy
+          cp ./molly-spring/build/libs/molly-spring-0.0.1-SNAPSHOT.jar ./dev-molly-deploy
           cp ./.github/scripts/dev/devappsepc.yml ./dev-molly-deploy/appspec.yml
           cp ./.github/scripts/dev/devdeploymolly.sh ./dev-molly-deploy/deploymolly.sh
           cp ./.github/scripts/dev/devhealth.sh ./dev-molly-deploy/health.sh

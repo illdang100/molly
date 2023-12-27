@@ -75,7 +75,7 @@ const Header = () => {
   }, [alarmView]);
 
   const axiosInstance = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "https://mo11y.shop",
     withCredentials: true,
   });
 
@@ -99,7 +99,7 @@ const Header = () => {
                 },
               };
               return await axios
-                .post(`http://localhost:8080/api/token/refresh`, null, config)
+                .post(`https://mo11y.shop/api/token/refresh`, null, config)
                 .then(async (res) => {
                   localStorage.removeItem("accessToken");
                   localStorage.removeItem("refreshToken");
@@ -119,7 +119,7 @@ const Header = () => {
                     window.location.replace("/");
                   } else if (e.response.status === 403) {
                     alert(e.response.data.msg);
-                    axios.delete(`http://localhost:8080/api/account/logout`, {
+                    axios.delete(`https://mo11y.shop/api/account/logout`, {
                       headers: {
                         "Refresh-Token": localStorage.getItem("refreshToken"),
                       },
@@ -515,7 +515,7 @@ const UserDropdown = (props) => {
       <li
         onClick={() => {
           axios
-            .delete(`http://localhost:8080/api/account/logout`)
+            .delete(`https://mo11y.shop/api/account/logout`)
             .then((response) => {
               console.log(response);
               localStorage.clear();

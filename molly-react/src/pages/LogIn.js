@@ -3,8 +3,8 @@ import styles from '../css/Login.module.css';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const KAKAO_AUTH_URL = `http://localhost:8080/oauth2/authorization/kakao`;
-  const GOOGLE_AUTH_URL = `http://localhost:8080/oauth2/authorization/google`;
+  const KAKAO_AUTH_URL = `https://mo11y.shop/oauth2/authorization/kakao`;
+  const GOOGLE_AUTH_URL = `https://mo11y.shop/oauth2/authorization/google`;
   
   
   const kakaoLogin = () => {

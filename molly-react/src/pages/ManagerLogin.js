@@ -8,7 +8,7 @@ const ManagerLogin = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    fetch(`http://localhost:8080/api/login`, {
+    fetch(`https://mo11y.shop/api/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

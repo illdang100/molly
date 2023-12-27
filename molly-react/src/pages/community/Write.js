@@ -31,7 +31,7 @@ const Write = () => {
             formData.append("file", file);
 
             axios
-              .post("http://localhost:8080/api/v0/file/upload", formData)
+              .post("https://mo11y.shop/api/v0/file/upload", formData)
               .then((res) => {
                 resolve({
                   default: res.data.data.uri,

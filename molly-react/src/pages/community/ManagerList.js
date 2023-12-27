@@ -48,7 +48,7 @@ const List = () => {
   }, []);
 
   const handleLogout = () => {
-    axios.delete(`http://localhost:8080/api/account/logout`, {
+    axios.delete(`https://mo11y.shop/api/account/logout`, {
       headers: {
         "Refresh-Token": localStorage.getItem("refreshToken"),
       },
